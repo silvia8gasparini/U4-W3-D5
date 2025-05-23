@@ -1,11 +1,10 @@
 package entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Utente {
@@ -18,6 +17,9 @@ public class Utente {
     private LocalDate dataNascita;
     private String numeroTessera;
 
+    @OneToMany(mappedBy = "utente", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Prestito> prestiti = new ArrayList<>();
+
     public Utente() {
     }
 
@@ -26,6 +28,10 @@ public class Utente {
         this.cognome = cognome;
         this.dataNascita = dataNascita;
         this.numeroTessera = numeroTessera;
+    }
+
+    public List<Prestito> getPrestiti() {
+        return prestiti;
     }
 
     public Long getId() {
@@ -46,6 +52,10 @@ public class Utente {
 
     public String getNumeroTessera() {
         return numeroTessera;
+    }
+
+    public void setPrestiti(List<Prestito> prestiti) {
+        this.prestiti = prestiti;
     }
 
     public void setId(Long id) {
@@ -76,6 +86,7 @@ public class Utente {
                 ", cognome='" + cognome + '\'' +
                 ", dataNascita=" + dataNascita +
                 ", numeroTessera='" + numeroTessera + '\'' +
+                ", prestiti=" + prestiti +
                 '}';
     }
 }
