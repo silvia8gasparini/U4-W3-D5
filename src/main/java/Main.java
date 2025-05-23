@@ -15,7 +15,7 @@ public class Main {
         boolean running = true;
 
         while (running) {
-            System.out.println("--- MENU ---");
+            System.out.println("MENU");
             System.out.println("1. Inserisci libro");
             System.out.println("2. Inserisci rivista");
             System.out.println("3. Inserisci utente");
